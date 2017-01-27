@@ -7,6 +7,7 @@ module.exports = function(d3) {
       d3_functor = require('../util')().functor,
       plotMixin = require('./plotmixin')(d3.scaleLinear, d3_functor, scale.financetime, plot.dataSelector, plot.barWidth),
       candlestick = require('./candlestick')(d3.scaleLinear, d3.extent, accessor.ohlc, plot, plotMixin),
+      shaped_candlestick = require('./shaped_candlestick')(d3.scaleLinear, d3.extent, accessor.ohlc, plot, plotMixin),
       line = require('./line'),
       axisannotation = require('./axisannotation')(d3.axisTop, d3.scaleLinear, accessor.value, plot, plotMixin),
       svg = require('../svg')(d3);
@@ -30,6 +31,7 @@ module.exports = function(d3) {
     ohlc: require('./ohlc')(d3.scaleLinear, d3.extent, accessor.ohlc, plot, plotMixin),
     roc: line(accessor.value, plot, plotMixin, true),
     rsi: require('./rsi')(accessor.rsi, plot, plotMixin),
+    shaped_candlestick: shaped_candlestick,
     sma: line(accessor.value, plot, plotMixin),
     sroc: line(accessor.value, plot, plotMixin, true),
     stochastic: require('./stochastic')(accessor.stochastic, plot, plotMixin),

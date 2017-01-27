@@ -6,7 +6,8 @@ module.exports = function() {
       high = function(d) { return d.high; },
       low = function(d) { return d.low; },
       close = function(d) { return d.close;},
-      volume = function(d) { return d.volume; };
+      volume = function(d) { return d.volume; },
+      shape = function(d) { return d.shape; };
 
   function accessor(d) {
     return accessor.c(d);
@@ -48,6 +49,12 @@ module.exports = function() {
     return bind();
   };
 
+  accessor.shape = function(_) {
+    if (!arguments.length) return shape;
+    shape = _;
+    return bind();
+  };
+
   function bind() {
     accessor.d = date;
     accessor.o = open;
@@ -55,6 +62,7 @@ module.exports = function() {
     accessor.l = low;
     accessor.c = close;
     accessor.v = volume;
+    accessor.shape = shape;
 
     return accessor;
   }
